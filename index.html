@@ -16,12 +16,15 @@
 <body>
 
 <h1 style="text-align:center;">🏆 CSGOLD Leaderboard</h1>
+<p style="text-align:center;">
+  Total wagered amount during the active leaderboard period.
+</p>
 
 <table id="lb">
   <tr>
-    <th>#</th>
-    <th>Igrač</th>
-    <th>Ukupan wager</th>
+    <th>Rank</th>
+    <th>Player</th>
+    <th>Total Wagered</th>
   </tr>
 </table>
 
@@ -29,23 +32,4 @@
 const SUPABASE_URL = "https://jlidovdvrzhmvcwosumz.supabase.co"
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsaWRvdmR2cnpobXZjd29zdW16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5MDEzMTksImV4cCI6MjA4MTQ3NzMxOX0.A9jmVFOoLfGUlj-KX2gzJZ-Tk3EJdutx1Cz_Dpm9AAs"
 
-fetch(`${SUPABASE_URL}/rest/v1/leaderboard_view?select=*`, {
-  headers: {
-    apikey: SUPABASE_KEY
-  }
-})
-.then(res => res.json())
-.then(data => {
-  const table = document.getElementById("lb")
-  data.forEach(u => {
-    const row = table.insertRow()
-    row.insertCell().innerText = u.position
-    row.insertCell().innerText = u.username
-    row.insertCell().innerText = u.total_wager.toLocaleString()
-  })
-})
-</script>
-
-</body>
-</html>
-
+fetch(`${SUPABASE_URL}/rest/v1/leaderboard_view?select=*`,*
