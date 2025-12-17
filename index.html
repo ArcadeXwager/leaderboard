@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CSGOLD Leaderboard</title>
+  <style>
+    body { font-family: Arial; background:#111; color:#fff; }
+    table { margin:auto; border-collapse: collapse; width: 60%; }
+    th, td { padding: 10px; border-bottom: 1px solid #333; text-align:center; }
+    th { background:#222; }
+    tr:nth-child(1) td { color: gold; }
+    tr:nth-child(2) td { color: silver; }
+    tr:nth-child(3) td { color: #cd7f32; }
+  </style>
+</head>
+<body>
+
+<h1 style="text-align:center;">🏆 CSGOLD Leaderboard</h1>
+
+<table id="lb">
+  <tr>
+    <th>#</th>
+    <th>Igrač</th>
+    <th>Ukupan wager</th>
+  </tr>
+</table>
+
+<script>
+const SUPABASE_URL = "OVDJE_IDE_TVOJ_SUPABASE_URL"
+const SUPABASE_KEY = "OVDJE_IDE_TVOJ_PUBLIC_KEY"
+
+fetch(`${SUPABASE_URL}/rest/v1/leaderboard_view?select=*`, {
+  headers: {
+    apikey: SUPABASE_KEY
+  }
+})
+.then(res => res.json())
+.then(data => {
+  const table = document.getElementById("lb")
+  data.forEach(u => {
+    const row = table.insertRow()
+    row.insertCell().innerText = u.position
+    row.insertCell().innerText = u.username
+    row.insertCell().innerText = u.total_wager.toLocaleString()
+  })
+})
+</script>
+
+</body>
+</html>
 
